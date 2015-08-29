@@ -520,7 +520,7 @@
 	<string name="download_failed_file_not_found">Download failed: File not found</string>
 	<string name="download_failed_could_not_connect">Download failed: Could not connect to host</string>
 	<string name="pref_use_white_background">Use white background</string>
-	<string name="pref_use_white_background_summary">Show received messages as black text on a white background</string>
+	<string name="pref_use_white_background_summary">Show sent messages as blue text on a white background</string>
 	<string name="account_status_dns_timeout">Timeout in DNS</string>
 	<string name="server_info_broken">Broken</string>
 	<string name="pref_presence_settings">Presence settings</string>
