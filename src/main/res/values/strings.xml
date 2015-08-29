@@ -291,6 +291,7 @@
 	<string name="pref_about_message" translatable="false">
 			Conversations • the very last word in instant messaging.
 			\n\nCopyright © 2014-2016 Daniel Gultsch
+			\n\nBlue theme modifications: https://github.com/sezuan/Conversations
 			\n\nThis program is free software: you can redistribute it and/or modify
 			it under the terms of the GNU General Public License as published by
 			the Free Software Foundation, either version 3 of the License, or
