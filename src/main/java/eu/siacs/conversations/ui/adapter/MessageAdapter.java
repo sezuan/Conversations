@@ -110,9 +110,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
 	private int getMessageTextColor(boolean onDark, boolean primary) {
 		if (onDark) {
-			return activity.getResources().getColor(primary ? R.color.white : R.color.white70);
+			return activity.getResources().getColor(primary ? R.color.black54 : R.color.black26);
 		} else {
-			return activity.getResources().getColor(primary ? R.color.black87 : R.color.black54);
+			return activity.getResources().getColor(primary ? R.color.green900 : R.color.primary);
 		}
 	}
 
@@ -127,7 +127,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 		if (viewHolder.edit_indicator != null) {
 			if (message.edited()) {
 				viewHolder.edit_indicator.setVisibility(View.VISIBLE);
-				viewHolder.edit_indicator.setImageResource(darkBackground ? R.drawable.ic_mode_edit_white_18dp : R.drawable.ic_mode_edit_black_18dp);
+				viewHolder.edit_indicator.setImageResource(R.drawable.ic_mode_edit_black_18dp);
 				viewHolder.edit_indicator.setAlpha(darkBackground ? 0.7f : 0.57f);
 			} else {
 				viewHolder.edit_indicator.setVisibility(View.GONE);
@@ -189,7 +189,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 		if (message.getEncryption() == Message.ENCRYPTION_NONE) {
 			viewHolder.indicator.setVisibility(View.GONE);
 		} else {
-			viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_lock_white_18dp : R.drawable.ic_lock_black_18dp);
+			viewHolder.indicator.setImageResource(R.drawable.ic_lock_black_18dp);
 			viewHolder.indicator.setVisibility(View.VISIBLE);
 			if (message.getEncryption() == Message.ENCRYPTION_AXOLOTL) {
 				XmppAxolotlSession.Trust trust = message.getConversation()
@@ -523,7 +523,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 			}
 		}
 
-		boolean darkBackground = (type == RECEIVED && (!isInValidSession || !mUseWhiteBackground));
+		boolean darkBackground = (type == SENT && (!isInValidSession || !mUseWhiteBackground));
 
 		if (type == STATUS) {
 			if ("LOAD_MORE".equals(message.getBody())) {
@@ -633,16 +633,20 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
 		if (type == RECEIVED) {
 			if(isInValidSession) {
-				if (mUseWhiteBackground) {
-					viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received_white);
-				} else {
-					viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received);
-				}
+				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received);
 				viewHolder.encryption.setVisibility(View.GONE);
 			} else {
 				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received_warning);
 				viewHolder.encryption.setVisibility(View.VISIBLE);
 				viewHolder.encryption.setText(CryptoHelper.encryptionTypeToText(message.getEncryption()));
+			}
+		}
+
+		if (type == SENT) {
+			if (mUseWhiteBackground) {
+				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_sent_white);
+			} else {
+				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_sent);
 			}
 		}
 
