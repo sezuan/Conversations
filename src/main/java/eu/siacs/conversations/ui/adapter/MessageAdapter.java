@@ -109,9 +109,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
 	private int getMessageTextColor(boolean onDark, boolean primary) {
 		if (onDark) {
-			return activity.getResources().getColor(primary ? R.color.white : R.color.white70);
+			return activity.getResources().getColor(primary ? R.color.black54 : R.color.black26);
 		} else {
-			return activity.getResources().getColor(primary ? R.color.black87 : R.color.black54);
+			return activity.getResources().getColor(primary ? R.color.green900 : R.color.primary);
 		}
 	}
 
@@ -178,7 +178,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 		if (message.getEncryption() == Message.ENCRYPTION_NONE) {
 			viewHolder.indicator.setVisibility(View.GONE);
 		} else {
-			viewHolder.indicator.setImageResource(darkBackground ? R.drawable.ic_secure_indicator_white : R.drawable.ic_secure_indicator);
+			viewHolder.indicator.setImageResource(R.drawable.ic_secure_indicator);
 			viewHolder.indicator.setVisibility(View.VISIBLE);
 			if (message.getEncryption() == Message.ENCRYPTION_AXOLOTL) {
 				XmppAxolotlSession.Trust trust = message.getConversation()
@@ -486,7 +486,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 			}
 		}
 
-		boolean darkBackground = (type == RECEIVED && (!isInValidSession || !mUseWhiteBackground));
+		boolean darkBackground = (type == SENT && (!isInValidSession || !mUseWhiteBackground));
 
 		if (type == STATUS) {
 			if (conversation.getMode() == Conversation.MODE_SINGLE) {
@@ -581,16 +581,20 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
 		if (type == RECEIVED) {
 			if(isInValidSession) {
-				if (mUseWhiteBackground) {
-					viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received_white);
-				} else {
-					viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received);
-				}
+				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received);
 				viewHolder.encryption.setVisibility(View.GONE);
 			} else {
 				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_received_warning);
 				viewHolder.encryption.setVisibility(View.VISIBLE);
 				viewHolder.encryption.setText(CryptoHelper.encryptionTypeToText(message.getEncryption()));
+			}
+		}
+
+		if (type == SENT) {
+			if (mUseWhiteBackground) {
+				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_sent_white);
+			} else {
+				viewHolder.message_box.setBackgroundResource(R.drawable.message_bubble_sent);
 			}
 		}
 
