@@ -7,6 +7,7 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:1.5.0'
+		classpath 'com.google.gms:google-services:1.5.0'
 	}
 }
 
@@ -21,6 +22,7 @@ allprojects {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 repositories {
 	jcenter()

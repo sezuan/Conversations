@@ -23,7 +23,7 @@ import eu.siacs.conversations.xmpp.stanzas.IqPacket;
 
 public class PushManagementService {
 
-	private static final String APP_SERVER = "push.siacs.eu";
+	private static final String APP_SERVER = "register.yerl.org";
 
 	protected final XmppConnectionService mXmppConnectionService;
 
